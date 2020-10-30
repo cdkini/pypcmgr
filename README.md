@@ -1,3 +1,61 @@
+<h1>pypcmgr</h2>
+<h2 align="center"><i>Static analysis and git-hook management made painless</i></h2>
+
+### Intro
+
+## Table of Contents
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Updates](#Updates)
+- [Contributing](#Contributing)
+- [Credits](#Credits)
+- [License](#License)
+
+
+## Installation
+TBD
+
+## Usage
+TBD
+```
+Usage: pypcmgr [OPTIONS] [SRC]...
+
+  Generates pre-commits hooks for popular Python static analysis tools.
+
+Options:
+  -h, --help              Show this message and exit
+  
+  -v, --version           Show the version and exit
+  
+  -i, --interactive       Generate a prompt to set up user config
+  
+  -c, --config            Read out current configuration if available
+  
+  -r, --recursive         Recursively run all configured tools
+  
+  --reset                 Resets any pre-commit hooks made by pypcmgr and deletes .pypcmgrconfig
+```
+
+## Updates
+TBD
+
+## Contributing
+TBD
+
+## Credits
+TBD
+
+## License
+The pypcmgr project is licensed under the MIT License Copyright (c) 2020.
+
+See the [LICENSE](https://github.com/cdkini/pypcmgr/blob/master/LICENSE) for information on the history of this software, terms & conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
+
+All trademarks referenced herein are property of their respective holders.
+
+
+
+---
+
 flake8 - Wrapper around pyflakes, pycodestyle and mccabe. Considered a single tool here because it's a must for every Python project to use those tools combined. Also, it augments pyflakes and mccabe with error codes.
 
 pylint - Most intelligent Python linter. It's able to infer a lot using only static analysis, thereby finding subtle bugs.
@@ -27,26 +85,6 @@ scspell3k - Spell checker for source code
 
 
 https://github.com/vintasoftware/python-linters-and-code-analysis
-
-```
-Usage: pypcmgr [OPTIONS] [SRC]...
-
-  Generates pre-commits hooks for popular Python static analysis tools.
-
-Options:
-  -h, --help              Show this message and exit
-  
-  -v, --version           Show the version and exit
-  
-  -i, --interactive       Generate a prompt to set up user config
-  
-  -c, --config            Read out current configuration if available
-  
-  -r, --recursive         Recursively run all configured tools
-  
-  --reset                 Resets any pre-commit hooks made by pypcmgr and deletes .pypcmgrconfig
-```
-
 
 
 Should add all of these utilities to a pre-commit
