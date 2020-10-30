@@ -43,19 +43,23 @@ TBD
 Usage: pypcmgr [OPTIONS] [SRC]...
 
   Generates pre-commits hooks for popular Python static analysis tools.
+  If no path is passed in SRC, pypcmgr will default to the pwd.
+  If no flags are passed, pypcmgr will run all configured tools in SRC.
 
-Options:
-  -h, --help              Show this message and exit
+Options:  
+  -c, --config          Generate a prompt to set up user config
   
-  -v, --version           Show the version and exit
+  -l, --list            List out all tools noted in current configuration
   
-  -i, --interactive       Generate a prompt to set up user config
+  -r, --recursive       Recursively run all configured tools 
   
-  -c, --config            Read out current configuration if available
+  --hook                Create pre-commit hooks for all configured tools
   
-  -r, --recursive         Recursively run all configured tools
+  --reset               Reset any pre-commit hooks made by pypcmgr and delete .pypcmgrconfig
   
-  --reset                 Reset any pre-commit hooks made by pypcmgr and delete .pypcmgrconfig
+  -h, --help            Show this message and exit
+  
+  -v, --version         Show the version and exit
 ```
 
 ## Updates
