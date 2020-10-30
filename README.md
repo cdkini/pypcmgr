@@ -1,7 +1,32 @@
 <h1 align="center">pypcmgr</h2>
-<h2 align="center"><i>Static analysis and git-hook management made painless</i></h2>
+<h3 align="center"><i>Static analysis and git-hook management made painless</i></h3>
 
-### Intro
+pypcmgr is a tool that consolidates some of the post popular Python static analysis tools to help keep your codebase clean and error free.
+
+As of version 1.0.0, the following plug-ins are supported:
+
+```
+TESTING
+  pytest           Recommended by pypcmgr team
+  unittest         builtin
+  
+LINTING
+  flake8           Wrapper around pyflakes, pycodestyle and mccabe. Also, it augments pyflakes and mccabe with error codes
+  pylint           Most intelligent Python linter. It's able to infer a lot using only static analysis, thereby finding subtle bugs
+  
+FORMATTING
+  black            uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting
+  yapf             Yet another Python formatter
+
+MISCELLAENOUS
+  vulture          Find dead code
+  isort            A Python utility / library to sort imports or check them
+  pep8-naming      Naming Convention checker for Python
+  pycycle          Tool for pinpointing circular imports in Python
+  pydocstyle       Docstring style checker
+  dodgy            Looks at Python code to search for things which look "dodgy" such as passwords or diffs
+  scspell3k        Spell checker for source code
+```
 
 ## Table of Contents
 - [Installation](#Installation)
@@ -56,31 +81,6 @@ All trademarks referenced herein are property of their respective holders.
 
 ---
 
-flake8 - Wrapper around pyflakes, pycodestyle and mccabe. Considered a single tool here because it's a must for every Python project to use those tools combined. Also, it augments pyflakes and mccabe with error codes.
-
-pylint - Most intelligent Python linter. It's able to infer a lot using only static analysis, thereby finding subtle bugs.
-
-pytest - Recommended
-
-unittest - builtin
-
-black - uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting.
-
-yapf - Yet another Python formatter
-
-vulture - Find dead code
-
-isort - A Python utility / library to sort imports or check them
-
-pep8-naming: Naming Convention checker for Python
-
-pycycle - Tool for pinpointing circular imports in Python
-
-pydocstyle - Docstring style checker
-
-dodgy - Looks at Python code to search for things which look "dodgy" such as passwords or diffs.
-
-scspell3k - Spell checker for source code
 
 
 
