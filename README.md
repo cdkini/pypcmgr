@@ -1,10 +1,9 @@
 <h1 align="center">pypcmgr</h2>
 <h3 align="center"><i>Static analysis and git-hook management made painless</i></h3>
 
-pypcmgr is a tool that consolidates some of the post popular Python static analysis tools to help keep your codebase clean and error free.
+pypcmgr is a command line utility that consolidates some of the most popular Python static analysis tools to help keep your codebase clean and error free. Either run it manually when you see fit or have it set up pre-commit hooks to automate alongside your workflow.
 
-As of version 1.0.0, the following plug-ins are supported:
-
+As of version <b>1.0.0</b>, the following plug-ins are supported:
 ```
 TESTING
   pytest           Recommended by pypcmgr team
@@ -13,19 +12,12 @@ TESTING
 LINTING
   flake8           Wrapper around pyflakes, pycodestyle and mccabe. Also, it augments pyflakes and mccabe with error codes
   pylint           Most intelligent Python linter. It's able to infer a lot using only static analysis, thereby finding subtle bugs
+  mypy
   
 FORMATTING
   black            uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting
   yapf             Yet another Python formatter
-
-MISCELLAENOUS
-  vulture          Find dead code
-  isort            A Python utility / library to sort imports or check them
-  pep8-naming      Naming Convention checker for Python
-  pycycle          Tool for pinpointing circular imports in Python
-  pydocstyle       Docstring style checker
-  dodgy            Looks at Python code to search for things which look "dodgy" such as passwords or diffs
-  scspell3k        Spell checker for source code
+  autopep8         // TODO: Add info!
 ```
 
 ## Table of Contents
