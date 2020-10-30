@@ -1,7 +1,7 @@
 <h1 align="center">pypcmgr</h2>
 <h3 align="center"><i>Static analysis and git-hook management made painless</i></h3>
 
-pypcmgr is a command line utility that consolidates some of the most popular Python static analysis tools to help keep your codebase clean and error free. Either run it manually when you see fit or have it set up pre-commit hooks to automate alongside your workflow.
+pypcmgr is a command line utility that consolidates some of the most popular Python static analysis tools to help keep your codebase clean and error free. Either run it manually or have it set up pre-commit hooks to automate testing, linting, and formatting alongside your workflow.
 
 As of version <b>1.0.0</b>, the following plug-ins are supported:
 ```
@@ -33,7 +33,12 @@ FORMATTING
 TBD
 
 ## Usage
-TBD
+### Workflow
+##### Manual
+
+##### Automated
+
+### API
 ```
 Usage: pypcmgr [OPTIONS] [SRC]...
 
@@ -50,7 +55,7 @@ Options:
   
   -r, --recursive         Recursively run all configured tools
   
-  --reset                 Resets any pre-commit hooks made by pypcmgr and deletes .pypcmgrconfig
+  --reset                 Reset any pre-commit hooks made by pypcmgr and delete .pypcmgrconfig
 ```
 
 ## Updates
@@ -69,15 +74,6 @@ See the [LICENSE](https://github.com/cdkini/pypcmgr/blob/master/LICENSE) for inf
 
 All trademarks referenced herein are property of their respective holders.
 
-
-
 ---
 
-
-
-
 https://github.com/vintasoftware/python-linters-and-code-analysis
-
-
-Should add all of these utilities to a pre-commit
-Create command line prompt asking which modules the user wants to add to pre-commit
