@@ -1,5 +1,5 @@
 <h1 align="center">pypcmgr</h2>
-<h3 align="center"><i>Static analysis and git-hook management made painless</i></h3>
+<h3 align="center"><i>Static analysis and pre-commit hook management made painless</i></h3>
 
 pypcmgr is a command line utility that consolidates some of the most popular Python static analysis tools to help keep your codebase clean and error free. Either run it manually or have it set up pre-commit hooks to automate testing, linting, and formatting alongside your workflow.
 
