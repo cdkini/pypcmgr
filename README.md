@@ -1,4 +1,4 @@
-<h1>pypcmgr</h2>
+<h1 align="center">pypcmgr</h2>
 <h2 align="center"><i>Static analysis and git-hook management made painless</i></h2>
 
 ### Intro
