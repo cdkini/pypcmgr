@@ -1,7 +1,7 @@
 <h1 align="center">pypcmgr</h2>
 <h3 align="center"><i>Static analysis and pre-commit hook management made painless</i></h3>
 
-pypcmgr is a command line utility that consolidates some of the most popular Python static analysis tools to help keep your codebase clean and error free. Either run it manually or have it set up pre-commit hooks to automate testing, linting, and formatting alongside your workflow.
+<b>pypcmgr</b> is a command line utility that consolidates some of the most popular Python static analysis tools and testing frameworks to help keep your codebase clean and error free. Either run it manually or have it set up pre-commit hooks to automate testing, linting, and formatting alongside your git workflow.
 
 As of version <b>1.0.0</b>, the following plug-ins are supported:
 ```
@@ -19,6 +19,9 @@ FORMATTING
   yapf             Yet another Python formatter
   autopep8         // TODO: Add info!
 ```
+
+While pypcmgr defaults to a combination of pytest, flake8, and black (which is configured using the `-d` or `--default` flag), we understand that this config is not best for all projects. As such, you have the option of picking and choosing any (or all) utiilities when setting up your own projects.   
+
 
 ## Table of Contents
 - [Installation](#Installation)
@@ -47,6 +50,8 @@ Usage: pypcmgr [OPTIONS] [SRC]...
   If no flags are passed, pypcmgr will run all configured tools in SRC.
 
 Options:  
+  -d, --default         Sets up default config (pytest, black, flake8)
+
   -c, --config          Generate a prompt to set up user config
   
   -l, --list            List out all tools noted in current configuration
