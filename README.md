@@ -58,9 +58,9 @@ Options:
   
   -r, --recursive       Recursively run all configured tools 
   
-  --hook                Create pre-commit hooks for all configured tools
+  -H, --hook            Create pre-commit hooks for all configured tools
   
-  --reset               Reset any pre-commit hooks made by pypcmgr and delete .pypcmgrconfig
+  -R, --reset           Reset any pre-commit hooks made by pypcmgr and delete .pypcmgrconfig
   
   -h, --help            Show this message and exit
   
