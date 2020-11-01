@@ -1,18 +1,42 @@
-def run():
-    print("run not yet implemented!")
+class Action:
+    """TODO: Add class description!
 
+    Attributes:
+        None
 
-def config():
-    print("config not yet implemented!")
+    """
 
+    @staticmethod
+    def run():
+        """TODO: Add method description!
 
-def ls():
-    print("ls not yet implemented!")
+        """
+        print("run not yet implemented!")
 
+    @staticmethod
+    def config():
+        """TODO: Add method description!
 
-def hook():
-    print("hook not yet implemened")
+        """
+        print("config not yet implemented!")
 
+    @staticmethod
+    def ls():
+        """TODO: Add method description!
 
-def reset():
-    print("reset not yet implemented")
+        """
+        print("ls not yet implemented!")
+
+    @staticmethod
+    def hook():
+        """TODO: Add method description!
+
+        """
+        print("hook not yet implemened")
+
+    @staticmethod
+    def reset():
+        """TODO: Add method description!
+
+        """
+        print("reset not yet implemented")
