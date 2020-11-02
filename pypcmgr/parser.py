@@ -9,26 +9,25 @@ class Parser:
     """TODO: Add class description!
 
     Attributes:
-        __description (str):
-        __command_manager (CommandManager):
+        __command_manager (commands.CommandManager):
 
     """
 
-    def __init__(self, description, command_manager):
+    def __init__(self, command_manager):
         self.__command_manager = command_manager
         self.__parser = argparse.ArgumentParser(
             prog="pypcmgr",
-            description=description,
+            description=command_manager.description,
             formatter_class=argparse.RawTextHelpFormatter,
         )
-        __parser.add_argument(
+        self.__parser.add_argument(
             "-v",
             "--version",
             action="version",
-            version=f"pypcmgr {__version__}",
+            version="pypcmgr {}".format(__version__),
             help="show the current version and exit",
         )
-        self.__subparsers = __parser.add_subparsers(
+        self.__subparsers = self.__parser.add_subparsers(
             help="run '[cmd] -h' for additional details and options", metavar="cmd"
         )
 
@@ -43,19 +42,22 @@ class Parser:
 
         """
         flags = {}
-        for flag in self.__command_manager.supported_flags:
+        for flag, attrs in self.__command_manager.supported_flags.items():
             flag_parser = argparse.ArgumentParser(add_help=False)
             flag_parser.add_argument(
-                flag.aliases[0], flag.aliases[1], action="store_true", help=flag.message
+                attrs.aliases[0],
+                attrs.aliases[1],
+                action="store_true",
+                help=attrs.message,
             )
             flags[flag] = flag_parser
-        for command in self.__command_manager.supported_commands:
+        for command, attrs in self.__command_manager.supported_commands.items():
             command_parser = self.__subparsers.add_parser(
                 command,
-                description=command.description,
-                parents=[flags[flag.name] for flag in command.flags],
+                description=attrs.description,
+                parents=[flags[flag.name] for flag in attrs.flags],
             )
-            command_parser.set_defaults(func=command.method)
+            command_parser.set_defaults(func=attrs.method)
 
     def parse(self):
         """TODO: Add method docstring!
@@ -67,5 +69,7 @@ class Parser:
             None
         
         """
-        args = __parser.parse_args()
-        args.func()
+        args = self.__parser.parse_args()
+        if "func" not in args:
+            raise ValueError("No valid command or flag passed")
+        return args

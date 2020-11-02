@@ -1,8 +1,15 @@
+import os
+
 from commands import CommandManager
+from parser import Parser
 
 
 def main():
     manager = CommandManager()
+    parser = Parser(manager)
+    parser.setup()
+    args = parser.parse()
+    args.func(path=os.getcwd(), flags=args)
 
 
 if __name__ == "__main__":

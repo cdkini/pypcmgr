@@ -1,42 +1,53 @@
-class Action:
-    """TODO: Add class description!
+def run(path, flags):
+    """TODO: Add method description!
 
-    Attributes:
-        None
+    Args:
+        path (str):
+        flags (argparse.Namespace):
 
     """
+    print("run not yet implemented!")
 
-    @staticmethod
-    def run():
-        """TODO: Add method description!
 
-        """
-        print("run not yet implemented!")
+def config(path, flags):
+    """TODO: Add method description!
 
-    @staticmethod
-    def config():
-        """TODO: Add method description!
+    Args:
+        path (str):
+        flags (argparse.Namespace):
 
-        """
-        print("config not yet implemented!")
+    """
+    print("config not yet implemented!")
 
-    @staticmethod
-    def ls():
-        """TODO: Add method description!
 
-        """
-        print("ls not yet implemented!")
+def hook(path, flags):
+    """TODO: Add method description!
 
-    @staticmethod
-    def hook():
-        """TODO: Add method description!
+    Args:
+        path (str):
+        flags (argparse.Namespace):
 
-        """
-        print("hook not yet implemened")
+    """
+    print("hook not yet implemened")
 
-    @staticmethod
-    def reset():
-        """TODO: Add method description!
 
-        """
-        print("reset not yet implemented")
+def ls(path, flags):
+    """TODO: Add method description!
+
+    Args:
+        path (str):
+        flags (argparse.Namespace): 
+
+    """
+    print("ls not yet implemented!")
+
+
+def reset(path, flags):
+    """TODO: Add method description!
+
+    Args:
+        path (str):
+        flags (argparse.Namespace):
+
+    """
+    print("reset not yet implemented")

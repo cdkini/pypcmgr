@@ -1,4 +1,4 @@
-from actions import Action
+import actions
 
 
 class CommandManager:
@@ -7,6 +7,7 @@ class CommandManager:
     Attributes:
         __supported_flags (Dict[_Flag]):
         __supported_commands (Dict[_Command]): 
+        __description (str):
 
     """
 
@@ -28,48 +29,40 @@ class CommandManager:
                     self.__supported_flags[flag]
                     for flag in ["config", "default", "recursive"]
                 ],
-                method=Action.run,
+                method=actions.run,
             ),
             "config": self._Command(
                 name="config",
                 description="generate a prompt to set up configuration",
                 flags=[self.__supported_flags[flag] for flag in ["default"]],
-                method=Action.config,
+                method=actions.config,
             ),
             "hook": self._Command(
                 name="hook",
                 description="create pre-commit hooks for all configured tools",
                 flags=[self.__supported_flags[flag] for flag in ["config", "default"]],
-                method=Action.hook,
+                method=actions.hook,
             ),
             "ls": self._Command(
                 name="ls",
                 description="list out all configured tools and pre-commit hooks",
                 flags=[self.__supported_flags[flag] for flag in ["config", "default"]],
-                method=Action.ls,
+                method=actions.ls,
             ),
             "reset": self._Command(
                 name="reset",
                 description="delete configuration and remove pre-commit hooks",
                 flags=[self.__supported_flags[flag] for flag in ["config", "hook"]],
-                method=Action.reset,
+                method=actions.reset,
             ),
         }
 
-    def generate_description(self):
-        """TODO: Add method docstring
-
-        Args:
-            None
-
-        Returns:
-            str: 
-
-        """
         description = "Manage pre-commit hooks for static analysis and testing libs  \n\ncommands:\n"
         for command in self.__supported_commands:
-            description += f"  {command}{' '*(15-len(command))} {self.__supported_commands[command].description}\n"
-        return description
+            spacing = " " * (15 - len(command))
+            command_description = self.__supported_commands[command].description
+            description += "  {}{} {}\n".format(command, spacing, command_description)
+        self.__description = description
 
     @property
     def supported_flags(self):
@@ -80,6 +73,11 @@ class CommandManager:
     def supported_commands(self):
         """Dict[_Command]: getter for __supported_commands"""
         return self.__supported_commands
+
+    @property
+    def description(self):
+        """str: getter for __description"""
+        return self.__description
 
     class _Flag:
         """TODO: Add class docstring
@@ -118,7 +116,7 @@ class CommandManager:
             __name (str):
             __description (str):
             __flags (List[str]):
-            __method (Action.function):
+            __method (actions.func):
 
         """
 
@@ -130,7 +128,7 @@ class CommandManager:
 
         @property
         def name(self):
-            """str: getter for __name""" 
+            """str: getter for __name"""
             return self._Command__name
 
         @property
@@ -145,5 +143,5 @@ class CommandManager:
 
         @property
         def method(self):
-            """function: getter for __method"""
+            """func: getter for __method"""
             return self._Command__method
