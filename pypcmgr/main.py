@@ -9,6 +9,7 @@ def main():
     parser = Parser(manager)
     parser.setup()
     args = parser.parse()
+    print(args)
     args.func(path=os.getcwd(), flags=args)
 
 

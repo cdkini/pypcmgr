@@ -1,3 +1,6 @@
+import os
+
+
 def run(path, flags):
     """TODO: Add method description!
 
@@ -50,4 +53,18 @@ def reset(path, flags):
         flags (argparse.Namespace):
 
     """
-    print("reset not yet implemented")
+    confirmation = input("Are you sure you want to reset your settings? (Y/N): ")
+    if confirmation != "Y" or confirmation != "y":
+        print("Terminating reset command")
+        return
+
+    delete_config = False if flags.hook and not flags.config else True
+    if delete_config:
+        if not os.path.exists(path + ".pypcmgrconfig"):
+            raise ValueError(f".pypcmgrconfig not found in {path}")
+        os.remove(path + ".pypcmgrconfig")
+        print(f"Deleted .pypcmgrconfig in {path}")
+
+    delete_hooks = False if flags.config and not flags.hook else True
+    if delete_hooks:
+        pass # TODO: Open to implement!
