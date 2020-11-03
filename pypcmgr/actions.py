@@ -54,7 +54,7 @@ def reset(path, flags):
 
     """
     confirmation = input("Are you sure you want to reset your settings? (Y/N): ")
-    if confirmation != "Y" or confirmation != "y":
+    if confirmation.lower() != "y":
         print("Terminating reset command")
         return
 
@@ -67,4 +67,7 @@ def reset(path, flags):
 
     delete_hooks = False if flags.config and not flags.hook else True
     if delete_hooks:
-        pass # TODO: Open to implement!
+        if not os.path.exists(path + ".pre-commit-config.yaml"):
+            raise ValueError(f".pre-commit-config.yaml not found in {path}")
+        os.remove(path + ".pre-commit-config.yaml")
+        print(f"Deleted .pre-commit-config.yaml")

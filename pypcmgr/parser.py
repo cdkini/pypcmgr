@@ -1,15 +1,20 @@
 import argparse
-import textwrap
-import os
 
 from __init__ import __version__
 
 
 class Parser:
-    """TODO: Add class description!
+    """Wrapper around argparse.ArgumentParser.
+
+    Responsible for instantiating ArgumentParser, updating description, and creating commands and related flags.
+
+    Args (__init__):
+        command_manager (commands.CommandManager): All supported commands and flags and their related actions.
 
     Attributes:
-        __command_manager (commands.CommandManager):
+        __command_manager (commands.CommandManager): See 'command_manager' in Args
+        __parser (argparse.ArgumentParser): Parent parser responsible for --help and --version.
+        __subparsers (argparse.ArgumentParser): Parsers for individual commands and flags.
 
     """
 
@@ -32,13 +37,7 @@ class Parser:
         )
 
     def setup(self):
-        """TODO: Add method docstring!
-
-        Args:
-            None
-
-        Returns:
-            None
+        """Links flags and actions to supported commands.
 
         """
         flags = {}
@@ -60,14 +59,14 @@ class Parser:
             command_parser.set_defaults(func=attrs.method)
 
     def parse(self):
-        """TODO: Add method docstring!
-
-        Args:
-            None
+        """Parses command line input to identify appropriate command and flags passed by user.
 
         Returns:
-            None
-        
+            argparse.Namespace: Contains flags and action for parsed command.
+
+        Raises:
+            ValueError: Raised if an invalid command or flag is passed.
+
         """
         args = self.__parser.parse_args()
         if "func" not in args:
