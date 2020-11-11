@@ -9,7 +9,14 @@ def run(path, flags):
         flags (argparse.Namespace):
 
     """
-    print("run not yet implemented!")
+    if flags.config and flags.default:
+        pass  # Should raise error that flags cannot be both used
+    elif flags.config:
+        config(path, flags)
+    elif flags.default:
+        config(path, flags)
+    else:
+        pass
 
 
 def config(path, flags):
@@ -20,7 +27,13 @@ def config(path, flags):
         flags (argparse.Namespace):
 
     """
-    print("config not yet implemented!")
+    if os.path.exists(".pre-commit-config.yaml"):
+        print(f"Config file already found in {path}")
+        confirmation = input("Are you sure you want to reset your settings? (Y/N): ")
+        if confirmation.lower() != "y":
+            print("Terminating config command")
+            return
+    os.mknod(".pre-commit-config.yaml")
 
 
 def hook(path, flags):
@@ -39,7 +52,7 @@ def ls(path, flags):
 
     Args:
         path (str):
-        flags (argparse.Namespace): 
+        flags (argparse.Namespace):
 
     """
     print("ls not yet implemented!")
@@ -70,4 +83,4 @@ def reset(path, flags):
         if not os.path.exists(path + ".pre-commit-config.yaml"):
             raise ValueError(f".pre-commit-config.yaml not found in {path}")
         os.remove(path + ".pre-commit-config.yaml")
-        print(f"Deleted .pre-commit-config.yaml")
+        print("Deleted .pre-commit-config.yaml")
