@@ -2,10 +2,10 @@ import actions
 
 
 class CommandManager:
-    """Wrapper around all supported pypcmgr commands and their related flag_names.
+    """Wrapper around all supported pypcmgr commands and their related flags.
 
     Attributes:
-        __supported_flags (Dict[str, _Flag]): Details all supported flag_names and their attributes.
+        __supported_flags (Dict[str, _Flag]): Details all supported flags and their attributes.
         __supported_commands (Dict[str, _Command]): Details all supported commands and their attributes.
         __description (str): Message detailing all commands and their usage. To be utilized in --help flag.
 
@@ -16,20 +16,23 @@ class CommandManager:
             "config": self._Flag(
                 name="config",
                 aliases=["-c", "--config"],
-                description="Open to implement!",
+                description="only apply to configured tools (ls, reset) | call 'config' before running (run, hook)",
             ),
             "default": self._Flag(
                 name="default",
                 aliases=["-d", "--default"],
-                description="Open to implement!",
+                description="set up pytest, flake8, and black (config) | \
+                    call 'config' with defaults before running (run, hook)",
             ),
             "recursive": self._Flag(
                 name="recursive",
                 aliases=["-r", "--recursive"],
-                description="Open to implement!",
+                description="run command recursively (run)",
             ),
             "hook": self._Flag(
-                name="hook", aliases=["-H", "--hook"], description="Open to implement!"
+                name="hook",
+                aliases=["-H", "--hook"],
+                description="only apply to pre-commit hooks (ls, reset)",
             ),
         }
 
@@ -37,7 +40,7 @@ class CommandManager:
             "run": self._Command(
                 name="run",
                 description="run configured tools",
-                flag_names=[
+                flags=[
                     self.__supported_flags[flag]
                     for flag in ["config", "default", "recursive"]
                 ],
@@ -46,36 +49,31 @@ class CommandManager:
             "config": self._Command(
                 name="config",
                 description="generate a prompt to set up configuration",
-                flag_names=[self.__supported_flags[flag] for flag in ["default"]],
+                flags=[self.__supported_flags[flag] for flag in ["default"]],
                 method=actions.config,
             ),
             "hook": self._Command(
                 name="hook",
                 description="create pre-commit hooks for all configured tools",
-                flag_names=[
-                    self.__supported_flags[flag] for flag in ["config", "default"]
-                ],
+                flags=[self.__supported_flags[flag] for flag in ["config", "default"]],
                 method=actions.hook,
             ),
             "ls": self._Command(
                 name="ls",
                 description="list out all configured tools and pre-commit hooks",
-                flag_names=[
-                    self.__supported_flags[flag] for flag in ["config", "default"]
-                ],
+                flags=[self.__supported_flags[flag] for flag in ["config", "hook"]],
                 method=actions.ls,
             ),
             "reset": self._Command(
                 name="reset",
                 description="delete configuration and remove pre-commit hooks",
-                flag_names=[
-                    self.__supported_flags[flag] for flag in ["config", "hook"]
-                ],
+                flags=[self.__supported_flags[flag] for flag in ["config", "hook"]],
                 method=actions.reset,
             ),
         }
 
-        description = "Manage pre-commit hooks for static analysis and testing libs  \n\ncommands:\n"
+        description = "manage pre-commit hooks for static analysis and testing libs  \n\ncommands:\n"
+
         for command in self.__supported_commands:
             spacing = " " * (15 - len(command))
             command_description = self.__supported_commands[command].description
@@ -138,21 +136,21 @@ class CommandManager:
         Args (__init__):
             name (str): Long form name of command.
             description (str): Help message to be displayed to user.
-            flag_names (List[str]): Names of applicable flags that alter command's functionality.
+            flags (List[str]): Names of applicable flags that alter command's functionality.
             method (actions.func): Associated action to be invoked when command is called.
 
         Attributes:
             __name (str): See 'name' in Args
             __description (str): See 'description' in Args
-            __flag_names (List[str]): See 'flag_names' in Args
+            __flags (List[str]): See 'flags' in Args
             __method (actions.func): See 'method' in Args
 
         """
 
-        def __init__(self, name, description, flag_names, method):
+        def __init__(self, name, description, flags, method):
             self.__name = name
             self.__description = description
-            self.__flag_names = flag_names
+            self.__flags = flags
             self.__method = method
 
         @property
@@ -166,8 +164,8 @@ class CommandManager:
             return self._Command__description
 
         @property
-        def flag_names(self):
-            """List[str]: getter for __flag_names"""
+        def flags(self):
+            """List[str]: getter for __flags"""
             return self._Command__flags
 
         @property

@@ -37,9 +37,7 @@ class Parser:
         )
 
     def setup(self):
-        """Links flags and actions to supported commands.
-
-        """
+        """Links flags and actions to supported commands."""
         flags = {}
         for flag, attrs in self.__command_manager.supported_flags.items():
             flag_parser = argparse.ArgumentParser(add_help=False)
@@ -47,7 +45,7 @@ class Parser:
                 attrs.aliases[0],
                 attrs.aliases[1],
                 action="store_true",
-                help=attrs.message,
+                help=attrs.description,
             )
             flags[flag] = flag_parser
         for command, attrs in self.__command_manager.supported_commands.items():
