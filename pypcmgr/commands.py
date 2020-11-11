@@ -24,11 +24,6 @@ class CommandManager:
                 description="set up pytest, flake8, and black (config) | \
                     call 'config' with defaults before running (run, hook)",
             ),
-            "recursive": self._Flag(
-                name="recursive",
-                aliases=["-r", "--recursive"],
-                description="run command recursively (run)",
-            ),
             "hook": self._Flag(
                 name="hook",
                 aliases=["-H", "--hook"],
@@ -40,10 +35,7 @@ class CommandManager:
             "run": self._Command(
                 name="run",
                 description="run configured tools",
-                flags=[
-                    self.__supported_flags[flag]
-                    for flag in ["config", "default", "recursive"]
-                ],
+                flags=[self.__supported_flags[flag] for flag in ["config", "default"]],
                 method=actions.run,
             ),
             "config": self._Command(
