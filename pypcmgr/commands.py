@@ -21,7 +21,7 @@ class CommandManager:
             "default": self._Flag(
                 name="default",
                 aliases=["-d", "--default"],
-                description="set up pytest, flake8, and black (config) | \
+                description="set up flake8 and black (config) | \
                     call 'config' with defaults before running (run, hook)",
             ),
             "hook": self._Flag(
@@ -64,7 +64,9 @@ class CommandManager:
             ),
         }
 
-        description = "manage pre-commit hooks for static analysis and testing libs  \n\ncommands:\n"
+        description = (
+            "manage pre-commit hooks for static analysis libs  \n\ncommands:\n"
+        )
 
         for command in self.__supported_commands:
             spacing = " " * (15 - len(command))

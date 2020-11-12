@@ -25,16 +25,16 @@ hook: config, reset
 
 - run                 run configured utilities
   -c / --config         call 'config' cmd before running
-  -d / --default        set up default configuration (pytest, black, flake8) before running
+  -d / --default        set up default configuration (black + flake8) before running
   -r / --recursive      recursively run all configured tools
 - config              generate a prompt to set up user configuration
-  -d / --default        set up default configuration (pytest, black, flake8)
+  -d / --default        set up default configuration (black + flake8)
 - ls                  list out all configured tools and pre-commit hooks
   -c / --config         list out just configured tools
   --hook                list out just hooks
 - hook                create pre-commit hooks for all configured tools
   -c / --config         call 'config' cmd before creating hooks
-  -d / --default        set up default configuration (pytest, black, flake8) creating hooks
+  -d / --default        set up default configuration (black + flake8) creating hooks
 - reset               delete configuration and remove all pre-commit hooks
   -c / --config         only remove configuration
   --hook                only remove pre-commit hooks

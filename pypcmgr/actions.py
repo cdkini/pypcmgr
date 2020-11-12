@@ -1,3 +1,4 @@
+import argparse
 import os
 
 
@@ -14,9 +15,7 @@ def run(path, flags):
     elif flags.config:
         config(path, flags)
     elif flags.default:
-        config(path, flags)
-    else:
-        pass
+        config(path, argparse.Namespace({"default": True}))
 
 
 def config(path, flags):
@@ -44,7 +43,15 @@ def hook(path, flags):
         flags (argparse.Namespace):
 
     """
-    print("hook not yet implemened")
+    if flags.config and flags.default:
+        pass  # Throw an error
+    if flags.config:
+        config(path, flags)
+    elif flags.default:
+        pass
+    else:
+        pass
+    print("hook not yet implemented")
 
 
 def ls(path, flags):
@@ -71,15 +78,13 @@ def reset(path, flags):
         print("Terminating reset command")
         return
 
-    delete_config = False if flags.hook and not flags.config else True
-    if delete_config:
+    if flags.config:
         if not os.path.exists(path + ".pypcmgrconfig"):
             raise ValueError(f".pypcmgrconfig not found in {path}")
         os.remove(path + ".pypcmgrconfig")
         print(f"Deleted .pypcmgrconfig in {path}")
 
-    delete_hooks = False if flags.config and not flags.hook else True
-    if delete_hooks:
+    if flags.hook:
         if not os.path.exists(path + ".pre-commit-config.yaml"):
             raise ValueError(f".pre-commit-config.yaml not found in {path}")
         os.remove(path + ".pre-commit-config.yaml")
