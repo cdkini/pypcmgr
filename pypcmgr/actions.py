@@ -78,14 +78,14 @@ def reset(path, flags):
         print("Terminating reset command")
         return
 
-    if flags.config:
+    if flags.config or (not flags.config and not flags.default):
         if not os.path.exists(path + ".pypcmgrconfig"):
             raise ValueError(f".pypcmgrconfig not found in {path}")
         os.remove(path + ".pypcmgrconfig")
         print(f"Deleted .pypcmgrconfig in {path}")
 
-    if flags.hook:
+    if flags.hook or (not flags.config and not flags.default):
         if not os.path.exists(path + ".pre-commit-config.yaml"):
             raise ValueError(f".pre-commit-config.yaml not found in {path}")
         os.remove(path + ".pre-commit-config.yaml")
-        print("Deleted .pre-commit-config.yaml")
+        print(f"Deleted .pre-commit-config.yaml in {path}")
